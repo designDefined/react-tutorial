@@ -49,3 +49,19 @@ yarn dev
   - 제일 바깥 `<div>`의 가로폭은 `width: 647px`로 고정해주세요
   - `global.css`로 기본 스타일을 리셋하는 css 파일을 적용시켜두었습니다. 이는 수정하지 말되, 혹시 궁금한 거 있으면 질문해주세요!
 - 작업 내용을 Push 합니다
+- 깃허브에서 Pull Request를 엽니다
+
+# 참고할만한 사이트
+
+## Git
+
+- [게임 형식의 git 배우기](https://learngitbranching.js.org/?locale=ko)
+
+## CSS
+
+- [css flexbox 관련](https://studiomeal.com/archives/197)
+- [게임 형식의 flexbox 배우기](https://flexboxfroggy.com/#ko)
+
+## 리액트
+
+- [벨로퍼트와 함께하는 모던 리액트 입문](https://react.vlpt.us/)
