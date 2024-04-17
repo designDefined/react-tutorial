@@ -1,0 +1,17 @@
+.parent {
+  --gray-color: #f5f5f5;
+  --pading-16: 16px;
+}
+
+.parent .child {
+  color: var(--gray-color);
+  padding: 24px;
+  padding-top: 48px;
+}
+
+.parent_child {
+}
+
+.child {
+  color: red;
+}
