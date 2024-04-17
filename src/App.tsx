@@ -1,6 +1,34 @@
+import { useState } from "react";
 import styles from "./App.module.css";
+import Frame1 from "./components/frame1.tsx";
+import Frame2 from "./components/frame2.tsx";
 
 function App() {
+  const [frame, setFrame] = useState(0);
+  const [members, setMembers] = useState([
+    {
+      id: 1,
+      name: "고영현",
+      desc: "슈퍼프론트엔드 디벨로퍼",
+    },
+    {
+      id: 2,
+      name: "임찬솔",
+      desc: "슈퍼슈퍼 프론트엔드 디벨로퍼... 내용은 한 줄로 제한합니다",
+    },
+    {
+      id: 3,
+      name: "정대용",
+      desc: "슈슈퍼 백엔드 디벨로퍼",
+    },
+  ]);
+  const [nextId, setNextId] = useState(4);
+
+  const addMember = (newName: string, newDesc: string) => {
+    setMembers([...members, { id: nextId, name: newName, desc: newDesc }]);
+    setNextId(nextId + 1);
+  };
+
   return (
     <div className={styles.container1}>
       <div className={styles.container2}>
@@ -42,34 +70,28 @@ function App() {
       </div>
       <div className={styles.members}>
         <div className={styles.text}>클래스 멤버 (3)</div>
+        {frame === 0 ? (
+          <Frame1 toggleFrame={setFrame} />
+        ) : (
+          <Frame2 toggleFrame={setFrame} addMember={addMember} />
+        )}
         <div className={styles.membersWrap}>
-          <button className={styles.box}>
-            <img src="/plus.png" alt="" />
-            <div className={styles.text}>새로운 멤버 추가</div>
-          </button>
-          <div className={styles.memberBox}>
-            <img src="/profile1.png" alt="" />
-            <div className={styles.profile}>
-              <div className={styles.name}>고영현</div>
-              <div className={styles.desc}>슈퍼프론트엔드 디벨로퍼</div>
-            </div>
-          </div>
-          <div className={styles.memberBox}>
-            <img src="profile2.png" alt="" />
-            <div className={styles.profile}>
-              <div className={styles.name}>임찬솔</div>
-              <div className={styles.desc}>
-                슈퍼슈퍼 프론트엔드 디벨로퍼... 내용은 한 줄로 제한합니다
+          {members.map((member) => (
+            <div className={styles.memberBox} key={member.id}>
+              <img
+                src={
+                  member.id <= 3
+                    ? `/profile${member.id}.png`
+                    : "/default_user.png"
+                }
+                alt=""
+              />
+              <div className={styles.profile}>
+                <div className={styles.name}>{member.name}</div>
+                <div className={styles.desc}>{member.desc}</div>
               </div>
             </div>
-          </div>
-          <div className={styles.memberBox}>
-            <img src="profile3.png" alt="" />
-            <div className={styles.profile}>
-              <div className={styles.name}>정대용</div>
-              <div className={styles.desc}>슈슈퍼 백엔드 디벨로퍼</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
