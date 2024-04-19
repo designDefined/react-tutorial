@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "고영현",
+      "description": "슈퍼프론트엔드 디벨로퍼",
+      "profile_uri": "/profile1.png"
+    },
+    {
+      "id": 2,
+      "name": "임찬솔",
+      "description": "슈퍼슈퍼 프론트엔드 디벨로퍼... 내용은 한 줄로 제한합니다",
+      "profile_uri": "/profile2.png"
+    },
+    {
+      "id": 3,
+      "name": "정대용",
+      "description": "슈슈퍼 백엔드 디벨로퍼",
+      "profile_uri": "/profile3.png"
+    }
+  ]
+}
