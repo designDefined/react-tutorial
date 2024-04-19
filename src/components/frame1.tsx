@@ -1,9 +1,9 @@
 import styles from "./styles/frame1.module.css";
 
-export default function Frame1({
+export default function AddMemberButton({
   toggleFrame,
 }: {
-  toggleFrame: (x: number) => void;
+  toggleFrame: (x: 0 | 1) => void;
 }) {
   return (
     <div className={styles.buttonWrapper}>
