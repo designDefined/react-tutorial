@@ -1,0 +1,35 @@
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 10px;
+}
+
+.buttonWrapper .addButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 8px;
+  padding-right: 16px;
+  border: none;
+  border-radius: 16px;
+  background: rgba(55, 119, 246, 0.1);
+  cursor: pointer;
+}
+
+.buttonWrapper .addButton img {
+  height: 40px;
+  width: 40px;
+  border-radius: 16px;
+}
+
+.buttonWrapper .addButton .text {
+  overflow: hidden;
+  color: var(--Gray-Scale-Black, #1c1c1c);
+  text-overflow: ellipsis;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

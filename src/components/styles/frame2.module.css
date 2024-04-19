@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 10px;
+  gap: 8px;
+}
+
+.container .inputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.container .inputWrapper .input {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 16px;
+}
+
+.container input::placeholder {
+  color: #8d8d8d;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%; /* 21.6px */
+}
+
+.container .buttonWrapper {
+  display: flex;
+  justify-content: end;
+}
+
+.container .buttonWrapper .saveButton {
+  display: flex;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background: var(--Brand-Theme-Brand-Theme, #3777f6);
+  color: var(--Gray-Scale-White, #fff);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.container .popUp {
+  z-index: 9999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  gap: 10px;
+  background-color: gray;
+}
+
+.container .popUp .caution {
+  font: black;
+}
