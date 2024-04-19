@@ -1,35 +1,36 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {GetUsers} from "./api/getUsers.tsx";
 import styles from "./App.module.css";
 import AddMemberButton from "./components/frame1.tsx";
 import RegisterButton from "./components/frame2.tsx";
 
+type User = {
+  id: number;
+  name: string;
+  description: string;
+  profile_uri?: string;
+};
+
 function App() {
   const [frame, setFrame] = useState<0 | 1>(0);
-  const [members, setMembers] = useState([
-    {
-      id: 1,
-      name: "고영현",
-      desc: "슈퍼프론트엔드 디벨로퍼",
-      url: `/profile1.png`,
-    },
-    {
-      id: 2,
-      name: "임찬솔",
-      desc: "슈퍼슈퍼 프론트엔드 디벨로퍼... 내용은 한 줄로 제한합니다",
-      url: `/profile2.png`,
-    },
-    {
-      id: 3,
-      name: "정대용",
-      desc: "슈슈퍼 백엔드 디벨로퍼",
-      url: `/profile3.png`,
-    },
-  ]);
-  const [nextId, setNextId] = useState(4);
+  const [members, setMembers] = useState<User[]>([]);
+  const [nextId, setNextId] = useState();
+
+  useEffect(() => {
+    async function GetData() {
+      try {
+        const userData = await GetUsers();
+        setMembers(userData.data);
+      } catch (error) {
+        console.error("유저 데이터를 가져오는 중 오류가 발생했습니다:", error);
+      }
+    }
+    GetData();
+  }, []);
 
   const addMember = (newName: string, newDesc: string) => {
     setMembers([
-      ...members,
+      …members,
       { id: nextId, name: newName, desc: newDesc, url: "" },
     ]);
     setNextId(nextId + 1);
