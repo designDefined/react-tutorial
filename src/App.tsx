@@ -40,6 +40,10 @@ export default function App() {
     ]);
   };
 
+  const removeMember = (targetId: number) => {
+    setMembers(members.filter((User) => User.id !== targetId));
+  };
+
   return (
     <div className={styles.container1}>
       <div className={styles.container2}>
@@ -89,18 +93,26 @@ export default function App() {
         <div className={styles.membersWrap}>
           {members.map((member) => (
             <div className={styles.memberBox} key={member.id}>
-              <img
-                src={
-                  member.profile_uri === ""
-                    ? "/default_user.png"
-                    : member.profile_uri
-                }
-                alt=""
-              />
-              <div className={styles.profile}>
-                <div className={styles.name}>{member.name}</div>
-                <div className={styles.desc}>{member.description}</div>
+              <div className={styles.memberInfo}>
+                <img
+                  src={
+                    member.profile_uri === ""
+                      ? "/default_user.png"
+                      : member.profile_uri
+                  }
+                  alt=""
+                />
+                <div className={styles.profile}>
+                  <div className={styles.name}>{member.name}</div>
+                  <div className={styles.desc}>{member.description}</div>
+                </div>
               </div>
+              <button
+                className={styles.deleteButton}
+                onClick={() => removeMember(member.id)}
+              >
+                <div>삭제</div>
+              </button>
             </div>
           ))}
         </div>
