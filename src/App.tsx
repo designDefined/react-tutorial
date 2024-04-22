@@ -19,8 +19,8 @@ export default function App() {
     async function GetData() {
       try {
         const userData = await GetUsers();
-        if (!userData.data) console.log("유저 데이터가 존재하지 않습니다.");
-        else setMembers(userData.data);
+        if (!userData) console.log("유저 데이터가 존재하지 않습니다.");
+        else setMembers(userData);
       } catch (error) {
         console.error("유저 데이터를 가져오는 중 오류가 발생했습니다:", error);
       }
