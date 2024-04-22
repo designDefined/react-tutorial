@@ -3,6 +3,8 @@ import { GetUsers } from "./api/getUsers.tsx";
 import styles from "./App.module.css";
 import AddMemberButton from "./components/frame1.tsx";
 import RegisterButton from "./components/frame2.tsx";
+import { AddUser } from "./api/addUser.tsx";
+import { DeleteUser } from "./api/deleteUser.tsx";
 
 type User = {
   id: number;
@@ -38,10 +40,12 @@ export default function App() {
         profile_uri: "",
       },
     ]);
+    AddUser({ newName, newDesc });
   };
 
   const removeMember = (targetId: number) => {
     setMembers(members.filter((User) => User.id !== targetId));
+    DeleteUser(targetId);
   };
 
   return (
