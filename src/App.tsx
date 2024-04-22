@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {GetUsers} from "./api/getUsers.tsx";
+import { useState, useEffect } from "react";
+import { GetUsers } from "./api/getUsers.tsx";
 import styles from "./App.module.css";
 import AddMemberButton from "./components/frame1.tsx";
 import RegisterButton from "./components/frame2.tsx";
@@ -11,16 +11,16 @@ type User = {
   profile_uri?: string;
 };
 
-function App() {
+export default function App() {
   const [frame, setFrame] = useState<0 | 1>(0);
   const [members, setMembers] = useState<User[]>([]);
-  const [nextId, setNextId] = useState();
 
   useEffect(() => {
     async function GetData() {
       try {
         const userData = await GetUsers();
-        setMembers(userData.data);
+        if (!userData.data) console.log("유저 데이터가 존재하지 않습니다.");
+        else setMembers(userData.data);
       } catch (error) {
         console.error("유저 데이터를 가져오는 중 오류가 발생했습니다:", error);
       }
@@ -30,10 +30,14 @@ function App() {
 
   const addMember = (newName: string, newDesc: string) => {
     setMembers([
-      …members,
-      { id: nextId, name: newName, desc: newDesc, url: "" },
+      ...members,
+      {
+        id: members.length + 1,
+        name: newName,
+        description: newDesc,
+        profile_uri: "",
+      },
     ]);
-    setNextId(nextId + 1);
   };
 
   return (
@@ -76,7 +80,7 @@ function App() {
         </button>
       </div>
       <div className={styles.members}>
-        <div className={styles.text}>클래스 멤버 ({nextId - 1})</div>
+        <div className={styles.text}>클래스 멤버 ({members.length})</div>
         {frame === 0 ? (
           <AddMemberButton toggleFrame={setFrame} />
         ) : (
@@ -86,12 +90,16 @@ function App() {
           {members.map((member) => (
             <div className={styles.memberBox} key={member.id}>
               <img
-                src={member.url === "" ? "/default_user.png" : member.url}
+                src={
+                  member.profile_uri === ""
+                    ? "/default_user.png"
+                    : member.profile_uri
+                }
                 alt=""
               />
               <div className={styles.profile}>
                 <div className={styles.name}>{member.name}</div>
-                <div className={styles.desc}>{member.desc}</div>
+                <div className={styles.desc}>{member.description}</div>
               </div>
             </div>
           ))}
@@ -100,5 +108,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
